@@ -10,8 +10,8 @@ import { Testimonials } from "@/components/site/testimonials";
 
 export default function Home() {
   return (
-    <div className="flex flex-1 flex-col">
-      <main className="flex-1">
+    <div className="flex min-w-0 flex-1 flex-col">
+      <main className="min-w-0 flex-1">
         <Header />
         <Hero />
         <About />

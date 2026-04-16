@@ -15,9 +15,9 @@ const quick = [
 
 export function Footer() {
   return (
-    <footer id="contact" className="bg-black text-neutral-300">
-      <div className="mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-8 lg:grid-cols-4">
-        <div>
+    <footer id="contact" className="w-full min-w-0 overflow-x-clip bg-black text-neutral-300">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-4 py-14 sm:px-6 sm:py-16 lg:grid-cols-4 lg:gap-12 lg:px-8">
+        <div className="min-w-0">
           <p className="font-serif text-2xl text-white">Goat Spa</p>
           <p className="mt-4 text-sm leading-relaxed">
             1200 Wellness Way
@@ -26,11 +26,15 @@ export function Footer() {
             <br />
             Austin, TX 78701
           </p>
-          <a href="tel:+15555551234" className="mt-3 inline-block text-sm hover:text-[#58d2d7]">
-            (555) 555-1234
+          <a
+            href="tel:+15555551234"
+            className="mt-4 inline-flex w-fit max-w-full items-center gap-2 rounded-sm border border-white/15 bg-black px-3 py-2 text-sm text-white shadow-sm ring-1 ring-white/10 transition hover:bg-neutral-900"
+          >
+            <PhoneGlyph className="h-4 w-4 shrink-0 opacity-90" />
+            <span className="truncate">(555) 555-1234</span>
           </a>
         </div>
-        <div>
+        <div className="min-w-0">
           <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white">
             Menu
           </p>
@@ -44,7 +48,7 @@ export function Footer() {
             ))}
           </ul>
         </div>
-        <div>
+        <div className="min-w-0">
           <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white">
             Quick links
           </p>
@@ -58,12 +62,16 @@ export function Footer() {
             ))}
           </ul>
         </div>
-        <div id="blog">
+        <div id="blog" className="min-w-0 max-w-full">
           <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white">
             Subscribe to our newsletter
           </p>
+          {/*
+            Always stack: the 4-column footer leaves this cell ~25% of the viewport,
+            which is too narrow for input + button in one row without clipping.
+          */}
           <form
-            className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-stretch"
+            className="mt-4 flex w-full max-w-full min-w-0 flex-col gap-3"
             action="#"
             method="post"
           >
@@ -76,11 +84,11 @@ export function Footer() {
               type="email"
               autoComplete="email"
               placeholder="you@example.com"
-              className="min-h-[52px] min-w-0 flex-1 rounded-md border border-white/25 bg-black/40 px-4 py-3.5 text-base text-white placeholder:text-neutral-500 focus:border-[#58d2d7] focus:outline-none focus:ring-1 focus:ring-[#58d2d7]/40 sm:min-w-[min(100%,280px)]"
+              className="box-border min-h-[52px] w-full max-w-full min-w-0 rounded-md border border-white/25 bg-black/40 px-4 py-3.5 text-base text-white placeholder:text-neutral-500 focus:border-[#58d2d7] focus:outline-none focus:ring-1 focus:ring-[#58d2d7]/40"
             />
             <button
               type="submit"
-              className="min-h-[52px] shrink-0 rounded-md bg-[#58d2d7] px-8 py-3.5 text-xs font-semibold uppercase tracking-[0.12em] text-black transition hover:bg-[#4ec3c8]"
+              className="box-border min-h-[52px] w-full max-w-full rounded-md bg-[#58d2d7] px-6 py-3.5 text-xs font-semibold uppercase tracking-[0.12em] text-black transition hover:bg-[#4ec3c8]"
             >
               Subscribe
             </button>
@@ -88,9 +96,9 @@ export function Footer() {
         </div>
       </div>
       <div className="border-t border-white/10">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-4 py-6 text-xs text-neutral-500 sm:flex-row sm:px-8">
-          <div className="flex flex-col gap-2 text-center sm:text-left">
-            <p>
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-4 py-8 text-xs text-neutral-500 sm:flex-row sm:items-start sm:gap-4 sm:px-6 sm:py-6 lg:px-8">
+          <div className="flex w-full min-w-0 max-w-full flex-col gap-2 text-center sm:w-auto sm:text-left">
+            <p className="break-words">
               © {new Date().getFullYear()} Goat Spa. All rights reserved.
             </p>
             <p className="text-[11px] text-neutral-500">
@@ -99,13 +107,13 @@ export function Footer() {
                 href="https://fullstackgoat.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-neutral-400 underline-offset-2 transition hover:text-[#58d2d7] hover:underline"
+                className="inline-block break-words text-neutral-400 underline-offset-2 transition hover:text-[#58d2d7] hover:underline"
               >
                 Full Stack Goat LLC
               </a>
             </p>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex shrink-0 items-center justify-center gap-4 sm:justify-end">
             <a
               href="https://www.facebook.com"
               target="_blank"
@@ -137,6 +145,23 @@ export function Footer() {
         </div>
       </div>
     </footer>
+  );
+}
+
+function PhoneGlyph({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden
+    >
+      <path
+        d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"
+        fill="currentColor"
+      />
+    </svg>
   );
 }
 

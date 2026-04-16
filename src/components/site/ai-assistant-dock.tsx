@@ -8,7 +8,7 @@ export function AIAssistantDock() {
   const reduce = useReducedMotion();
 
   return (
-    <div className="fixed bottom-5 right-5 z-[60] flex flex-col items-end gap-3">
+    <div className="fixed bottom-5 left-4 right-4 z-[60] flex flex-col items-end gap-3 sm:left-auto sm:right-5 sm:w-[min(380px,calc(100%-2rem))]">
       <AnimatePresence>
         {open && (
           <motion.aside
@@ -17,7 +17,7 @@ export function AIAssistantDock() {
             exit={reduce ? undefined : { opacity: 0, y: 12, scale: 0.98 }}
             transition={{ duration: 0.25 }}
             id="ai-consultant-panel"
-            className="w-[min(100vw-2.5rem,380px)] rounded-sm border border-neutral-200 bg-white shadow-[0_16px_48px_rgba(0,0,0,0.12)]"
+            className="w-full max-w-[380px] rounded-sm border border-neutral-200 bg-white shadow-[0_16px_48px_rgba(0,0,0,0.12)]"
             role="dialog"
             aria-label="Beauty consultant"
           >
